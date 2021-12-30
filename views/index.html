@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <title>Telegram User Bot</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <link rel="icon" type="image/x-icon" href="../public/10103-robot-face-icon.png">
+  <link rel="stylesheet" href="../public/index.css">
+  <script type="text/javascript" src="../public/client.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Telegram Userbot</h1>
+    <p id="header-text"></p>
+  </header>
+  <main>
+    <form id="form" action="" >
+      <input aria-label="input code" id="input" type="number" placeholder="code" required />
+      <input aria-label="submit button" type="submit" value="Submit" />
+    </form>
+    <div id="main">
+      <p></p>
+      <div id="chart"><canvas id="myChart" style="width:100%;max-width:700px"></canvas></div>
+    </div> 
+    <button id="1d" class="btn-down">1D</button>
+    <button id="7d">7D</button>
+  </main>  
+  <footer>
+
+  </footer>
+ 
+</body>
+</html>
