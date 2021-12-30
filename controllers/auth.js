@@ -66,15 +66,10 @@ require("dotenv").config();
         
         const user = await this.getUser();
       
-        
-        //const code = 'XXXXX';
-      
         if (!user) {
           const { phone_code_hash } = await sendCode(phone);
-            console.log("phone code hash " + phone_code_hash);
           return phone_code_hash;
         }
-        console.log(user.user.username);
         return false;
     };
     
@@ -91,10 +86,8 @@ require("dotenv").config();
                 phone,
                 phone_code_hash,
               });
-              console.log(signUpResult);
               return signUpResult;
             }
-            console.log(signInResult);
             return signInResult;
             
           } catch (error) {
@@ -105,7 +98,6 @@ require("dotenv").config();
             }
       
             // 2FA
-      
             const password = process.env.USER_PASSWORD;
       
             const { srp_id, current_algo, srp_B } = await getPassword();

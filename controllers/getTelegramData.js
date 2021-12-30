@@ -8,8 +8,6 @@ const data = async () => {
 
   if(user){
     try{
-        console.log("active user: ", user.user.username);
-        
         const resolvedPeer = await api.call('contacts.resolveUsername', {
             username: 'Divisas_Criptomonedas_Cuba',
           });

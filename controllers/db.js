@@ -35,7 +35,6 @@ class DataHandler {
            }); 
            try{
             const newData = await data.save();
-            console.log(newData)
            }catch(e){
                console.log(e)
            }
