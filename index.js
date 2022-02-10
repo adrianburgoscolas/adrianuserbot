@@ -23,24 +23,20 @@ app.get("/",(req,res)=>{
 routes(app);
 let signed;
 
-io.on("connection", (socket)=>{
-    socket.on("disconnect",()=>{
-    });
+io.on("connection", async (socket)=>{
+    socket.on("disconnect",()=>{});
     
-    (async ()=>{
-        const phone = process.env.PHONE;
-        const phone_code_hash = await auth.sendCode(phone);
-        if(phone_code_hash){
-            io.emit("askcode","send code")
-        }
+    const phone = process.env.PHONE;
+    const phone_code_hash = await auth.sendCode(phone);
+    if(phone_code_hash){
+        io.emit("askcode","send code")
+    }
 
-        socket.on("code",(code)=>{
-            (async ()=>{
-                signed = await auth.signInCode(code, phone, phone_code_hash);
-            })();
-        });
+    socket.on("code", async (code)=>{
+        
+        signed = await auth.signInCode(code, phone, phone_code_hash);
+    });
 
-    })();
     
 });
 

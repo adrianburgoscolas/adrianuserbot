@@ -40,21 +40,47 @@ const data = async () => {
               offset+=LIMIT_COUNT;
           }
         
-          let filterByItem = allMessages.filter((obj)=>{
-                return /usdt/i.test(obj.message)
-          });
+          // let usdtMessages = allMessages.filter((obj)=>{
+          //       return /usdt/i.test(obj.message)
+          // });
 
-          let dataSet = [];
-          filterByItem.forEach((obj)=>{
-            let parsedMessage = obj.message.match(/^(?!.*compro).*usdt.*a (\d+\.?\d+)/i)
-            if(parsedMessage && Number(parsedMessage[1]) > 25){
-              dataSet.unshift({
-                  price: Number(parsedMessage[1]),
-                  date: obj.date * 1000
+          // let usdMessages = allMessages.filter((obj)=>{
+          //   return /usd/i.test(obj.message)
+          // });
+
+          // let mlcMessages = allMessages.filter((obj)=>{
+          //   return /mlc/i.test(obj.message)
+          // });
+
+          let currenciesData = [];
+          allMessages.forEach((obj)=>{
+            let usdtMessage = obj.message.match(/^(?!.*compro).*usdt.*a (\d+\.?\d+)/i)
+            if(usdtMessage && Number(usdtMessage[1]) > 25){
+              currenciesData.unshift({
+                  price: Number(usdtMessage[1]),
+                  date: obj.date * 1000,
+                  currency: "usdt"
+                })
+            }
+            let usdMessage = obj.message.match(/^(?!.*compro).*usd.*a (\d+\.?\d+)/i)
+            if(usdMessage && Number(usdMessage[1]) > 25){
+              currenciesData.unshift({
+                  price: Number(usdMessage[1]),
+                  date: obj.date * 1000,
+                  currency: "usd"
+                })
+            }
+            let mlcMessage = obj.message.match(/^(?!.*compro).*mlc.*a (\d+\.?\d+)/i)
+            if(mlcMessage && Number(mlcMessage[1]) > 25){
+              currenciesData.unshift({
+                  price: Number(mlcMessage[1]),
+                  date: obj.date * 1000,
+                  currency: "mlc"
                 })
             }
           });
-          return dataSet;
+
+          return ;
 
       }catch(e){
           console.log(e);
