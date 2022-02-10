@@ -7,24 +7,25 @@ canvas {
     margin: auto;
     
 }
-#chart {
+.chart {
     padding: 10px;
 }
-#main{
+.main{
     border-radius: 30px;
     overflow: hidden;
     max-width: 700px;
     height: auto;
     padding: 0;
-    margin: 0 auto;
+    margin: auto;
+    margin-top: 10px;
     box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.24);
 }
-#main p{
+.main p{
     background-color: rgb(71, 141, 182);
     height: 50px;
     width: 100%;
     margin: 0 auto;
-    padding: 0;
+    padding-top: 10px;
 }
 
 
@@ -42,11 +43,11 @@ button {
     font-size: medium;
 }
 @media only screen and (min-width:680px){
-    #chart {
+    .chart {
         padding: 30px;
     }
 
-    #main p {
+    .main p {
         height: 70px;
     }
 }

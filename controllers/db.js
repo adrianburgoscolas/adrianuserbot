@@ -46,21 +46,17 @@ class DbHandler {
     //get dataset by time frame from db
     async getDataset(tf){
         try{
-            let outDataset = {
-                usdt: [],
-                usd: [],
-                mlc: []
-            };
+            let outDataset = [];
             //find last datapoint
-            const data = await CurrencyData.findOne().sort({date: -1})
+            const lastDataPoint = await CurrencyData.findOne().sort({date: -1})
 
             if(tf == "1d"){//1 day time frame dataset
-                const dataset = await CurrencyData.find({date: {$gte: data.date - 86400000}})
-                return dataset;
+                outDataset = await CurrencyData.find({date: {$gte: lastDataPoint.date - 86400000}})
+                return outDataset;
 
             }else if(tf == "7d"){//7 days time frame dataset
                 let weekDataset = [[]];
-                const dataset = await CurrencyData.find({date: {$gte: data.date - 604800000}})
+                const dataset = await CurrencyData.find({date: {$gte: lastDataPoint.date - 604800000}})
 
                 //12h(43200000) resolution to calculate the mean of a single datapoint
                 const offset = 43200000;

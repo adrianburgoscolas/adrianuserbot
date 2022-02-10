@@ -22,10 +22,10 @@ const data = async () => {
             access_hash: channel.access_hash,
           };
         
-          const LIMIT_COUNT = 50;
+          const LIMIT_COUNT = 80;
           const allMessages = [];
           let offset = 0;
-            let a = true;
+            // let a = true;
             let timeOffset = new Date().getTime() - 86400000;
             let lastDate = new Date().getTime();
             
@@ -55,7 +55,7 @@ const data = async () => {
           let currenciesData = [];
           allMessages.forEach((obj)=>{
             let usdtMessage = obj.message.match(/^(?!.*compro).*usdt.*a (\d+\.?\d+)/i)
-            if(usdtMessage && Number(usdtMessage[1]) > 25){
+            if(usdtMessage && Number(usdtMessage[1]) > 25 && Number(usdtMessage[1]) < 500){
               currenciesData.unshift({
                   price: Number(usdtMessage[1]),
                   date: obj.date * 1000,
@@ -63,7 +63,7 @@ const data = async () => {
                 })
             }
             let usdMessage = obj.message.match(/^(?!.*compro).*usd.*a (\d+\.?\d+)/i)
-            if(usdMessage && Number(usdMessage[1]) > 25){
+            if(usdMessage && Number(usdMessage[1]) > 25 && Number(usdMessage[1]) < 500){
               currenciesData.unshift({
                   price: Number(usdMessage[1]),
                   date: obj.date * 1000,
@@ -71,7 +71,7 @@ const data = async () => {
                 })
             }
             let mlcMessage = obj.message.match(/^(?!.*compro).*mlc.*a (\d+\.?\d+)/i)
-            if(mlcMessage && Number(mlcMessage[1]) > 25){
+            if(mlcMessage && Number(mlcMessage[1]) > 25  && Number(mlcMessage[1]) < 500){
               currenciesData.unshift({
                   price: Number(mlcMessage[1]),
                   date: obj.date * 1000,
@@ -80,7 +80,7 @@ const data = async () => {
             }
           });
 
-          return ;
+          return currenciesData;
 
       }catch(e){
           console.log(e);
