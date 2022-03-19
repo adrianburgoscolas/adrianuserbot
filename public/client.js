@@ -1,7 +1,6 @@
 $(document).ready(function(){
     const getChart = (tf)=>{
         $.get("/data/" + tf,function(data, status){
-            console.log(data)
             if(tf == "1d"){
                 $("#header-text").text("24h price");
                 $("#1d").addClass("btn-down")
@@ -26,7 +25,7 @@ $(document).ready(function(){
             }).map((obj)=>{return obj.price});
 
             var yUsdValues = data.filter((obj)=>{
-                return /usd/i.test(obj.currency);
+                return /usd$/i.test(obj.currency);
             }).map((obj)=>{return obj.price});
 
             var yMlcValues = data.filter((obj)=>{

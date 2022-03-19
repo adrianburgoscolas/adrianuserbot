@@ -8,7 +8,6 @@ const cron = async ()=>{
         const time = new Date().getTime();
         console.log("adquiring data at " + new Date(time));
         if(dataPoint){
-            console.log(dataPoint)
             if(time > dataPoint.date + 86400000){
                 const dataset = await getTelegramData();
                 // console.log(dataset)

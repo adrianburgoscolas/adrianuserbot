@@ -6,7 +6,7 @@ module.exports = function(app){
             const dataset = await db.getDataset(req.params.tf)
             res.json(dataset);
         }catch(e){
-            console.log(e)
+            console.log("error")
         }
     });
 };
